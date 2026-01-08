@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect direct /public access to root
+    RewriteCond %{THE_REQUEST} /public/ [NC]
+    RewriteRule ^public/?(.*)$ /$1 [R=301,L]
+
+    # Route all requests to Laravel public folder
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
